@@ -1,0 +1,185 @@
+manifest_format=1.6
+
+# Note that for ABE, these parameters are not used
+# Component data for dejagnu
+dejagnu_url=http://git.linaro.org/git/toolchain
+dejagnu_branch=linaro-local/stable
+dejagnu_revision=21f2ff7c065d7ead6aec3e5ed528ecb0f9eadbac
+dejagnu_filespec=dejagnu.git
+dejagnu_mingw_only="no"
+dejagnu_linuxhost_only="no"
+dejagnu_staticlink="yes"
+
+# Component data for python
+python_url=http://snapshots.linaro.org/components/toolchain/infrastructure/
+python_filespec=python-2.7.4-mingw32.tar.xz
+python_md5sum=9b3092eff5508c4802936dfe4f5225ef
+python_mingw_only="yes"
+python_linuxhost_only="no"
+python_staticlink="yes"
+
+# Component data for gmp
+gmp_url=https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/src
+gmp_filespec=gmp.tar.xz
+gmp_md5sum=b101c82f7da99dcce55b1ef8d1ce98db
+gmp_mingw_only="no"
+gmp_linuxhost_only="no"
+gmp_staticlink="yes"
+
+# Component data for mpfr
+mpfr_url=https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/src
+mpfr_filespec=mpfr.tar.xz
+mpfr_md5sum=97974873dbc922d4e97164222d684860
+mpfr_mingw_only="no"
+mpfr_linuxhost_only="no"
+mpfr_configure="--with-gmp=${local_builds}/destdir/${host}"
+mpfr_staticlink="yes"
+
+# Component data for mpc
+mpc_url=https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/src
+mpc_filespec=mpc.tar.xz
+mpc_md5sum=b3795f97a98b7775daab8936d04585d9
+mpc_mingw_only="no"
+mpc_linuxhost_only="no"
+mpc_configure="--with-gmp=${local_builds}/destdir/${host} --with-mpfr=${local_builds}/destdir/${host}"
+mpc_staticlink="yes"
+
+# Component data for expat
+expat_url=https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/src
+expat_filespec=libexpat.tar.xz
+expat_md5sum=2ffeb53b98b0f0cf9ba67a914bcdfa37
+expat_mingw_only="yes"
+expat_linuxhost_only="no"
+expat_staticlink="yes"
+
+# Component data for libiconv
+libiconv_url=https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/src
+libiconv_filespec=libiconv.tar.xz
+libiconv_md5sum=60318808e4a93d53276a3d3cfed25c05
+libiconv_mingw_only="yes"
+libiconv_linuxhost_only="no"
+libiconv_staticlink="yes"
+
+# Component data for gcc
+gcc_url=https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/src
+gcc_filespec=gcc.tar.xz
+gcc_makeflags="MAKEINFOFLAGS=--force"
+gcc_md5sum=e92d7be632419ea35d9c1e4be2dae06a
+gcc_mingw_only="no"
+gcc_linuxhost_only="no"
+gcc_configure=
+gcc_mingw_extraconf="--with-libiconv-prefix=${local_builds}/destdir/${host}/usr --with-system-zlib=no"
+gcc_staticlink="no"
+gcc_stage1_flags="--with-mpc=${local_builds}/destdir/${host} --with-mpfr=${local_builds}/destdir/${host} --with-gmp=${local_builds}/destdir/${host} --without-headers --with-newlib --with-bugurl=https://bugs.linaro.org/ --without-cloog --without-isl --disable-shared --disable-threads --disable-libatomic --disable-libsanitizer --disable-libssp --disable-libgomp --disable-libmudflap --disable-libquadmath --enable-checking=yes --enable-languages=c,c++ --disable-libstdcxx --disable-libvtv --with-arch=armv7-a --with-fpu=neon --with-float=hard --with-mode=arm --with-arch=armv7-a"
+gcc_stage2_flags="--with-mpc=${local_builds}/destdir/${host} --with-mpfr=${local_builds}/destdir/${host} --with-gmp=${local_builds}/destdir/${host} --with-build-sysroot=${sysroots} --with-sysroot=${local_builds}/destdir/${host}/arm-linux-gnueabihf/libc --disable-libmudflap --disable-libssp --enable-checking=release --enable-gnu-indirect-function --enable-languages=c,c++,fortran --enable-shared --prefix= --target=arm-none-linux-gnueabihf --with-arch=armv7-a --with-bugurl=https://bugs.linaro.org/ --with-float=hard --with-fpu=neon --with-mode=arm"
+
+# Component data for binutils
+binutils_url=git://sourceware.org/git
+binutils_revision=da3b036b57c0d409fc1fc3e25597fa13dc71baf5
+binutils_filespec=binutils-gdb.git
+binutils_mingw_only="no"
+binutils_linuxhost_only="no"
+binutils_configure="--enable-64-bit-bfd --enable-targets=arm-none-eabi,arm-none-linux-gnueabihf,armeb-none-eabi,armeb-none-linux-gnueabihf --target=arm-none-linux-gnueabihf --with-bugurl=https://bugs.linaro.org/ --enable-gold --enable-initfini-array --enable-plugins --disable-doc --disable-gdb --disable-gdbtk --disable-nls --disable-tui --disable-werror --without-gdb --without-python --without-x --prefix= --with-sysroot=${sysroots}"
+binutils_staticlink="yes"
+
+# Component data for gdb
+gdb_url=git://sourceware.org/git
+gdb_revision=e908e11a4f74ab6a06aef8c302a03b2a0dbc4d83
+gdb_filespec=binutils-gdb.git
+gdb_mingw_only="no"
+gdb_linuxhost_only="no"
+gdb_configure="--enable-64-bit-bfd --enable-targets=arm-none-eabi,arm-none-linux-gnueabihf,armeb-none-eabi,armeb-none-linux-gnueabihf --target=arm-none-linux-gnueabihf --with-bugurl=https://bugs.linaro.org/ --enable-initfini-array --enable-plugins --enable-tui --disable-binutils --disable-sim --disable-as --disable-ld --disable-doc --disable-gdbtk --disable-nls --disable-werror --without-x --prefix= --with-sysroot=${sysroots} --with-python=/usr/bin/python3"
+gdb_mingw_extraconf="--disable-tui --with-python=${local_snapshots}/python-2.7.4-mingw32 CFLAGS=-I${local_builds}/destdir/${host}/usr/include LDFLAGS=-L${local_builds}/destdir/${host}/usr/lib"
+gdb_staticlink="yes"
+
+# Component data for linux
+linux_url=git://git.kernel.org/pub/scm/linux/kernel/git/stable
+linux_revision=0f7c162c1df596e0bba04c26fc9cc497983bf32b
+linux_filespec=linux-stable.git
+linux_md5sum=
+linux_mingw_only="no"
+linux_linuxhost_only="no"
+linux_staticlink="yes"
+
+# Component data for glibc
+glibc_url=git://sourceware.org/git
+glibc_revision=50f20fe506abb8853641006a7b90a81af21d7b91
+glibc_filespec=glibc.git
+glibc_makeflags="PARALLELMFLAGS=-j32"
+glibc_mingw_only="no"
+glibc_linuxhost_only="no"
+glibc_configure="--enable-shared --with-tls --disable-profile --disable-omitfp --disable-bounded --disable-sanity-checks --disable-werror --enable-obsolete-rpc --disable-profile --without-gd --without-cvs --with-headers=${sysroots}/usr/include"
+
+# Component data for gdbserver
+gdbserver_url=git://sourceware.org/git
+gdbserver_revision=e908e11a4f74ab6a06aef8c302a03b2a0dbc4d83
+gdbserver_filespec=binutils-gdb.git
+gdbserver_mingw_only="no"
+gdbserver_linuxhost_only="no"
+gdbserver_configure="CPPFLAGS=--sysroot=${sysroots} CFLAGS=--sysroot=${sysroots} CXXFLAGS=--sysroot=${sysroots}"
+gdbserver_staticlink="yes"
+
+
+clibrary=glibc
+target=arm-linux-gnueabihf
+manifestid=ae05c1d42551a6ac01b8a4b048d95e0227d258b7
+
+ ##############################################################################
+ # Everything below this line is only for informational purposes for developers
+ ##############################################################################
+
+# Build machine data
+build: linux
+host: x86_64-unknown-linux-gnu
+kernel: 4.18.0-80.7.1.el8_0.x86_64
+hostname: linaro-9.2-2019.12-arm-linux-gnueabihf
+distribution: xenial
+host_gcc: gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12) 
+
+# These aren't used in the repeat build. just a sanity check for developers
+build directory: /workspace/out/arm-linux-gnueabihf/out/arm-linux-gnueabihf/build-linaro/builds
+sysroot directory: /workspace/out/arm-linux-gnueabihf/out/arm-linux-gnueabihf/build-linaro/sysroots/arm-linux-gnueabihf
+snapshots directory: /workspace/out/arm-linux-gnueabihf/out/arm-linux-gnueabihf/build-linaro/snapshots
+git reference directory: 
+
+abe_url=ssh://svli01005.wago.local/srv/git/mirrors/linaro
+abe_branch=branch=
+abe_revision=d2f9b66a9f00502eb56db3fcb8103522d9bc8afd
+abe_filespec=abe.git
+abe_configure=""
+
+--------------------- binutils ----------------------
+commit da3b036b57c0d409fc1fc3e25597fa13dc71baf5
+Author: GDB Administrator <gdbadmin@sourceware.org>
+Date:   Mon Dec 9 00:01:38 2019 +0000
+
+    Automatic date update in version.in
+
+--------------------- glibc ----------------------
+commit 50f20fe506abb8853641006a7b90a81af21d7b91
+Author: Florian Weimer <fweimer@redhat.com>
+Date:   Thu Dec 5 17:29:42 2019 +0100
+
+    misc/test-errno-linux: Handle EINVAL from quotactl
+    
+    In commit 3dd4d40b420846dd35869ccc8f8627feef2cff32 ("xfs: Sanity check
+    flags of Q_XQUOTARM call"), Linux 5.4 added checking for the flags
+    argument, causing the test to fail due to too restrictive test
+    expectations.
+    
+    Reviewed-by: Adhemerval Zanella <adhemerval.zanella@linaro.org>
+    (cherry picked from commit 1f7525d924b608a3e43b10fcfb3d46b8a6e9e4f9)
+
+--------------------- abe ----------------------
+commit d2f9b66a9f00502eb56db3fcb8103522d9bc8afd
+Author: Prathamesh Kulkarni <prathamesh.kulkarni@linaro.org>
+Date:   Tue Nov 19 16:52:14 2019 +0530
+
+    Add option --set gcc_patch_file=XXX.
+    
+    The rationale for this option is to build a patched gcc with abe
+    without requiring an initial baseline build. We can incrementally
+    extend the option to other components if desired.
+    
+    Change-Id: If0d8067b30a8d768b904cac4863903da2c654ada
+
